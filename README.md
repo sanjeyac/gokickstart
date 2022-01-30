@@ -20,7 +20,9 @@ with my most common use cases using practices that I found useful and easy to ma
 Like most application, having configurations and constants in a file make them easier to manage, this is a de-fact standard in Spring-Boot with application.yaml
 A `ServerConfig` struct will contain the values of properties.yaml
 
-## 
+## Todo next
+
+Integrate common security managers ( basic auth, session based and JWT )
 
 ## References
 
