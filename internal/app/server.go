@@ -46,22 +46,26 @@ func (s *Server) Start() {
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
 
+func (s *Server) RequestMapping(path string, method string, f func(http.ResponseWriter, *http.Request)) {
+	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods(method)
+}
+
 func (s *Server) GetMapping(path string, f func(http.ResponseWriter, *http.Request)) {
-	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("GET")
+	s.RequestMapping(path, "GET", f)
 }
 
 func (s *Server) PostMpaaing(path string, f func(http.ResponseWriter, *http.Request)) {
-	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("POST")
+	s.RequestMapping(path, "POST", f)
 }
 
 func (s *Server) PutMapping(path string, f func(http.ResponseWriter, *http.Request)) {
-	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("PUT")
+	s.RequestMapping(path, "PUT", f)
 }
 
 func (s *Server) DeleteMapping(path string, f func(http.ResponseWriter, *http.Request)) {
-	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("DELETE")
+	s.RequestMapping(path, "DELETE", f)
 }
 
 func (s *Server) PatchMapping(path string, f func(http.ResponseWriter, *http.Request)) {
-	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("PATCH")
+	s.RequestMapping(path, "PATCH", f)
 }
