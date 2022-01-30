@@ -8,34 +8,53 @@ import (
 
 	"github.com/gorilla/mux"
 	"gopkg.in/yaml.v2"
+	"gorm.io/driver/sqlite"
+	"gorm.io/gorm"
 )
 
 type ServerConfig struct {
 	Server struct {
 		Port int `yaml:"port"`
 	}
+	Datasource struct {
+		SqliteDb string `yaml:"sqlite-db"`
+	}
 }
 
 type Server struct {
 	Router *mux.Router
 	Config *ServerConfig
+	Db     *gorm.DB
 }
 
 /** Init server configuration */
 func (s *Server) Init() {
+	log.Println("Setup routing")
 	s.Router = mux.NewRouter()
 	staticFiles := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
 	s.Router.PathPrefix("/static/").Handler(staticFiles)
 
+	log.Println("Reading application properties")
 	yamlFile, err := ioutil.ReadFile("./configs/properties.yaml")
 	if err != nil {
+		log.Fatalln(err)
 		panic("Error no configuration file found")
 	}
 
 	err = yaml.Unmarshal(yamlFile, &s.Config)
 	if err != nil {
+		log.Fatalln(err)
 		panic("Error reading configuration file")
 	}
+
+	// can be changed with a different datbase here
+	log.Println("Opening database")
+	s.Db, err = gorm.Open(sqlite.Open(s.Config.Datasource.SqliteDb), &gorm.Config{})
+	if err != nil {
+		log.Fatalln(err)
+		panic("Error connecting to database")
+	}
+
 }
 
 /** Start server */
