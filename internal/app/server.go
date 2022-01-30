@@ -24,6 +24,8 @@ type Server struct {
 /** Init server configuration */
 func (s *Server) Init() {
 	s.Router = mux.NewRouter()
+	staticFiles := http.StripPrefix("/static/", http.FileServer(http.Dir("./static/")))
+	s.Router.PathPrefix("/static/").Handler(staticFiles)
 
 	yamlFile, err := ioutil.ReadFile("./configs/properties.yaml")
 	if err != nil {
