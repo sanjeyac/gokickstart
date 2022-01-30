@@ -13,7 +13,10 @@ clone repository and use ```go run .```
 
 ## Routes
 
-`routes.go` contains all the mapping between http's routes and controllers in a rails
+`routes.go` contains all the mapping between http's routes and controllers in a rails, while method mapping has been implemented in a Spring Boot style with GetMapping, PostMapping, PutMapping with a RequestMapping parent.
+
+```
+```W
 
 ## Controllers
 
