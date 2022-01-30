@@ -3,6 +3,10 @@
 Go kickstart is a simple repository that I'm managing to a have a fast setup for Go web application
 with my most common use cases using practices that I found useful and easy to maintain.
 
+## How to run
+
+clone repository and use ```go run .```
+
 ## Server
 
 `server.go` contains all the dependencies that are normally available on most frameworks like routing, properties, http mangement, security, etc.
