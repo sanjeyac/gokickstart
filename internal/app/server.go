@@ -48,7 +48,11 @@ func (s *Server) Init() {
 	}
 
 	// can be changed with a different datbase here
-	log.Println("Opening database")
+	log.Println("Opening database", s.Config.Datasource.SqliteDb)
+	if len(s.Config.Datasource.SqliteDb) == 0 {
+		panic("Missing database in properties")
+	}
+
 	s.Db, err = gorm.Open(sqlite.Open(s.Config.Datasource.SqliteDb), &gorm.Config{})
 	if err != nil {
 		log.Fatalln(err)
