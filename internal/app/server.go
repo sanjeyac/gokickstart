@@ -45,3 +45,23 @@ func (s *Server) Start() {
 	http.Handle("/", s.Router)
 	log.Fatal(http.ListenAndServe(addr, nil))
 }
+
+func (s *Server) GetMapping(path string, f func(http.ResponseWriter, *http.Request)) {
+	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("GET")
+}
+
+func (s *Server) PostMpaaing(path string, f func(http.ResponseWriter, *http.Request)) {
+	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("POST")
+}
+
+func (s *Server) PutMapping(path string, f func(http.ResponseWriter, *http.Request)) {
+	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("PUT")
+}
+
+func (s *Server) DeleteMapping(path string, f func(http.ResponseWriter, *http.Request)) {
+	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("DELETE")
+}
+
+func (s *Server) PatchMapping(path string, f func(http.ResponseWriter, *http.Request)) {
+	s.Router.NewRoute().Path(path).HandlerFunc(f).Methods("PATCH")
+}

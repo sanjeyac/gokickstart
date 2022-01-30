@@ -4,5 +4,5 @@ import "fmt"
 
 func (s *Server) RegisterRoutes() {
 	fmt.Println("Registering routes")
-	s.Router.HandleFunc("/", s.HandleIndex())
+	s.Router.HandleFunc("/", s.HandleIndex()).Methods("GET")
 }
