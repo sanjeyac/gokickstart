@@ -15,6 +15,10 @@ with my most common use cases using practices that I found useful and easy to ma
 
 `controllers.go` will be the bridge between routing and business logic and middleware
 
+## Static assets
+
+static assets will be exposed on /static route, this is a good place for stylesheets, javascripts, images and so on.
+
 ## Application properties
 
 Like most application, having configurations and constants in a file make them easier to manage, this is a de-facto standard in Spring-Boot with application.yaml, so 
@@ -22,7 +26,8 @@ a `ServerConfig` struct will contain the values of properties.yaml
 
 ## Todo next
 
-Integrate common security managers ( basic auth, session based and JWT )
+Template engine
+Integrate common security methods ( basic auth, session based and JWT )
 
 ## References
 
