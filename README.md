@@ -17,8 +17,8 @@ with my most common use cases using practices that I found useful and easy to ma
 
 ## Application properties
 
-Like most application, having configurations and constants in a file make them easier to manage, this is a de-fact standard in Spring-Boot with application.yaml
-A `ServerConfig` struct will contain the values of properties.yaml
+Like most application, having configurations and constants in a file make them easier to manage, this is a de-facto standard in Spring-Boot with application.yaml, so 
+a `ServerConfig` struct will contain the values of properties.yaml
 
 ## Todo next
 
